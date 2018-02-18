@@ -61,13 +61,13 @@ public class GameModel {
 
         
     // ADD YOU CODE HERE
-        for (int i =0; i<width;i++){
+        for (int i =0; i<width;i++){//fills the board with zeros which will represent no bombs touching this square
             for (int j =0;j<heigth;j++){
                 board[i][j]=0;
             }
         }
         int check =0;
-        while(check<numberOfMines){
+        while(check<numberOfMines){//this adds mines to the board randomly;
             int x= generator.nextInt(width);
             int y= generator.nextInt(heigth);
             if (board[x][y]!=9){//A nine on the array is a mine

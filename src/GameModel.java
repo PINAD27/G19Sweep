@@ -90,6 +90,7 @@ public class GameModel {
     public int getHeigth(){
         
     // ADD YOU CODE HERE
+        return(heigth);
 
     }
 
@@ -101,6 +102,7 @@ public class GameModel {
     public int getWidth(){
         
     // ADD YOU CODE HERE
+        return(width);
 
     }
 
@@ -230,6 +232,7 @@ public class GameModel {
     public int getNumberOfSteps(){
         
     // ADD YOU CODE HERE
+        return(numberOfSteps);
 
     }
 

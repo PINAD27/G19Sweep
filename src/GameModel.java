@@ -24,6 +24,8 @@ public class GameModel {
     private int heigth;
     private int numberOfMines;
     private int board[][];
+    private int dotsUncovered;
+    private static java.util.Random generator = new java.util.Random();
 
     /**
      * Constructor to initialize the model to a given size of board.
@@ -45,6 +47,7 @@ public class GameModel {
         this.numberOfMines =numberOfMines;
         this.numberOfSteps = 0; 
         board = new int [width][heigth];
+        dotsUncovered=0;
 
     }
 
@@ -58,7 +61,22 @@ public class GameModel {
 
         
     // ADD YOU CODE HERE
-        
+        for (int i =0; i<width;i++){
+            for (int j =0;j<heigth;j++){
+                board[i][j]=0;
+            }
+        }
+        int check =0;
+        while(check<numberOfMines){
+            int x= generator.nextInt(width);
+            int y= generator.nextInt(heigth);
+            if (board[x][y]!=9){//A nine on the array is a mine
+                board[x][y]=9;
+                check++;
+            }
+
+        }
+
 
 
     }

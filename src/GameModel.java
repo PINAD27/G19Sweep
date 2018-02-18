@@ -19,6 +19,11 @@ public class GameModel {
 
 
      // ADD YOUR INSTANCE VARIABLES HERE
+    private int numberOfSteps;
+    private int width;
+    private int heigth;
+    private int numberOfMines;
+    private int board[][];
 
     /**
      * Constructor to initialize the model to a given size of board.
@@ -35,6 +40,11 @@ public class GameModel {
     public GameModel(int width, int heigth, int numberOfMines) {
         
     // ADD YOU CODE HERE
+        this.width = width;
+        this.heigth =heigth;
+        this.numberOfMines =numberOfMines;
+        this.numberOfSteps = 0; 
+        board = new int [width][heigth];
 
     }
 
@@ -48,6 +58,7 @@ public class GameModel {
 
         
     // ADD YOU CODE HERE
+        
 
 
     }

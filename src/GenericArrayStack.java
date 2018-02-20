@@ -1,35 +1,37 @@
+/**
+*
+* @author Faizaan Chishtie
+* @author Aidan Charles
+*/
 public class GenericArrayStack<E> implements Stack<E> {
-   
-   // ADD YOUR INSTANCE VARIABLES HERE
 
+   private int pos = 0;
+   private E[] stack;
    // Constructor
+   @SuppressWarnings("unchecked")
     public GenericArrayStack( int capacity ) {
-        
-    // ADD YOU CODE HERE
-
+      this.stack = (E[])new Object[capacity];
     }
 
     // Returns true if this ArrayStack is empty
     public boolean isEmpty() {
-        
-    // ADD YOU CODE HERE
-
+      return this.pos == 0;
     }
 
     public void push( E elem ) {
-        
-    // ADD YOU CODE HERE
-
+      this.stack[this.pos] = elem;
+      this.pos++;
     }
-    public E pop() {
-        
-    // ADD YOU CODE HERE
 
+    public E pop() {
+      E elem = this.stack[this.pos-1];
+      this.stack[this.pos-1] = null;
+      return elem;
     }
 
     public E peek() {
-        
-    // ADD YOU CODE HERE
-
+      E top = pop();
+      push(top);
+      return top;
     }
 }

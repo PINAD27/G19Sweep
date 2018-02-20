@@ -5,6 +5,8 @@
  * be removed.
  *
  * @author Marcel Turcotte
+ * @author Faizaan Chishtie
+ * @author Aidan Charles
  */
 
 public interface Stack<E> {

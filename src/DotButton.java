@@ -8,19 +8,21 @@ import javax.swing.border.Border;
 
 /**
  * In the application <b>Minesweeper</b>, a <b>DotButton</b> is a specialized type of
- * <b>JButton</b> that represents a square in the game. 
+ * <b>JButton</b> that represents a square in the game.
  * It can have a number of possible icons, which are found in the
  * "icons" directory. The icon expresses the state of the dot:
  * covered, number of neighbooring mines, exploded..
- * 
- * 
+ *
+ *
  *
  *  The icons have been found on <a href=
  * "https://en.wikipedia.org/wiki/Open_content">wikimedia</a>. The author of these
- * icons seems to be someone called 
+ * icons seems to be someone called
  * <a href="https://commons.wikimedia.org/wiki/User:Cryosta">Kazukiokumura</a>.
  *
  * @author Guy-Vincent Jourdan, University of Ottawa
+ * @author Faizaan Chishtie
+ * @author Aidan Charles
  */
 
 public class DotButton extends JButton {
@@ -45,7 +47,7 @@ public class DotButton extends JButton {
     public static final int CLICKED_MINE        = 10;
     public static final int COVERED             = 11;
     public static final int FLAGGED             = 12;
-   
+
     /**
      * An array is used to cache all the images. Since the images are not
      * modified, all the cells that display the same image reuse the same
@@ -58,12 +60,12 @@ public class DotButton extends JButton {
 
     // ADD YOUR INSTANCE VARIABLES HERE
 
- 
+
 
     /**
      * Constructor used for initializing a DotButton at a specific
      * Board location, with a specific icon.
-     * 
+     *
      * @param column
      *            the column of this Cell
      * @param row
@@ -73,14 +75,14 @@ public class DotButton extends JButton {
      */
 
     public DotButton(int column, int row, int iconNumber) {
- 
+
     // ADD YOU CODE HERE
-        
+
     }
 
- 
 
- 
+
+
 
     /**
      * Sets the current value of the instance variable iconNumber, and update
@@ -92,44 +94,44 @@ public class DotButton extends JButton {
      */
 
     public void setIconNumber(int iconNumber) {
- 
+
     // ADD YOU CODE HERE
-        
+
     }
- 
+
     /**
      * Getter method for the attribute row.
-     * 
+     *
      * @return the value of the attribute row
      */
 
     public int getRow() {
- 
+
     // ADD YOU CODE HERE
-        
+
     }
 
     /**
      * Getter method for the attribute column.
-     * 
+     *
      * @return the value of the attribute column
      */
 
     public int getColumn() {
- 
+
     // ADD YOU CODE HERE
-        
+
     }
 
     /**
      * Returns the <b>ImageIcon</b> reference to use based on
-     * the current value of the variable iconNumber. 
-     * 
+     * the current value of the variable iconNumber.
+     *
      * @return the image to be displayed by the button
      */
 
     private ImageIcon getImageIcon() {
-    
+
 
         if (icons[iconNumber] == null) {
                 icons[iconNumber] = new ImageIcon("icons/" + getIconFileName());
@@ -137,7 +139,7 @@ public class DotButton extends JButton {
         return icons[iconNumber];
     }
     /**
-     * This method returns the name of the file containing the image 
+     * This method returns the name of the file containing the image
      * corresponding to the current value of the variable iconNumber.
      *
      * @return the name of the icon file to be used

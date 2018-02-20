@@ -11,6 +11,8 @@ import javax.swing.*;
  * step of the game, and  updates model and view.
  *
  * @author Guy-Vincent Jourdan, University of Ottawa
+ * @author Faizaan Chishtie
+ * @author Aidan Charles
  */
 
 
@@ -19,9 +21,9 @@ public class GameController implements ActionListener {
     // ADD YOUR INSTANCE VARIABLES HERE
 
     /**
-     * Constructor used for initializing the controller. It creates the game's view 
+     * Constructor used for initializing the controller. It creates the game's view
      * and the game's model instances
-     * 
+     *
      * @param width
      *            the width of the board on which the game will be played
      * @param height
@@ -44,7 +46,7 @@ public class GameController implements ActionListener {
      */
 
     public void actionPerformed(ActionEvent e) {
-        
+
     // ADD YOU CODE HERE
 
     }
@@ -62,7 +64,7 @@ public class GameController implements ActionListener {
      * <b>play</b> is the method called when the user clicks on a square.
      * If that square is not already clicked, then it applies the logic
      * of the game to uncover that square, and possibly end the game if
-     * that square was mined, or possibly uncover some other squares. 
+     * that square was mined, or possibly uncover some other squares.
      * It then checks if the game
      * is finished, and if so, congratulates the player, showing the number of
      * moves, and gives to options: start a new game, or exit
@@ -78,7 +80,7 @@ public class GameController implements ActionListener {
     }
 
    /**
-     * <b>clearZone</b> is the method that computes which new dots should be ``uncovered'' 
+     * <b>clearZone</b> is the method that computes which new dots should be ``uncovered''
      * when a new square with no mine in its neighborood has been selected
      * @param initialDot
      *      the DotInfo object corresponding to the selected DotButton that

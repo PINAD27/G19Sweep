@@ -4,6 +4,8 @@
  * information.
  *
  * @author Marcel Turcotte (turcotte@eecs.uottawa.ca)
+ * @author Faizaan Chishtie
+ * @author Aidan Charles
  */
 
 public class StudentInfo {

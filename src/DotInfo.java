@@ -119,4 +119,8 @@ public class DotInfo {
       return this.neighbooringMines;
     }
 
+    public String toString(){
+      return "Dot at x,y: " + x + "," + y; 
+    }
+
  }

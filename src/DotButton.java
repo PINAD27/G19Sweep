@@ -59,7 +59,9 @@ public class DotButton extends JButton {
 
 
     // ADD YOUR INSTANCE VARIABLES HERE
-
+    private int column;
+    private int row;
+    private int iconNumber;
 
 
     /**
@@ -75,7 +77,9 @@ public class DotButton extends JButton {
      */
 
     public DotButton(int column, int row, int iconNumber) {
-
+      this.column = column;
+      this.row = row;
+      this.iconNumber = iconNumber;
     // ADD YOU CODE HERE
 
     }
@@ -94,7 +98,7 @@ public class DotButton extends JButton {
      */
 
     public void setIconNumber(int iconNumber) {
-
+      this.iconNumber = iconNumber;
     // ADD YOU CODE HERE
 
     }
@@ -106,7 +110,7 @@ public class DotButton extends JButton {
      */
 
     public int getRow() {
-
+      return this.row;
     // ADD YOU CODE HERE
 
     }
@@ -118,7 +122,7 @@ public class DotButton extends JButton {
      */
 
     public int getColumn() {
-
+      return this.column;
     // ADD YOU CODE HERE
 
     }
@@ -131,8 +135,6 @@ public class DotButton extends JButton {
      */
 
     private ImageIcon getImageIcon() {
-
-
         if (icons[iconNumber] == null) {
                 icons[iconNumber] = new ImageIcon("icons/" + getIconFileName());
         }

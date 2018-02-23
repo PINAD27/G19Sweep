@@ -1,5 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.LinkedList;
 
 import javax.swing.*;
@@ -20,6 +19,10 @@ public class GameController implements ActionListener {
 
     // ADD YOUR INSTANCE VARIABLES HERE
 
+    private int width;
+    private int height;
+    private int numberOfMines;
+    private GameModel game;
     /**
      * Constructor used for initializing the controller. It creates the game's view
      * and the game's model instances
@@ -32,8 +35,11 @@ public class GameController implements ActionListener {
      *            the number of mines hidden in the board
      */
     public GameController(int width, int height, int numberOfMines) {
-
-    // ADD YOU CODE HERE
+      this.width = width;
+      this.height = height;
+      this.numberOfMines = numberOfMines;
+      this.game = new GameModel(width, height, numberOfMines);
+      System.out.println(game);
 
     }
 
@@ -44,19 +50,21 @@ public class GameController implements ActionListener {
      * @param e
      *            the ActionEvent
      */
-
+    @SuppressWarnings("unchecked")
     public void actionPerformed(ActionEvent e) {
-
-    // ADD YOU CODE HERE
-
+        if(e.getActionCommand().equals("reset")){
+          reset();
+        }
+        if(e.getActionCommand().equals("quit")){
+          this.game.uncoverAll(); //temp exit command
+        }
     }
 
     /**
      * resets the game
      */
     private void reset(){
-
-    // ADD YOU CODE HERE
+      this.game.reset();
 
     }
 
@@ -73,9 +81,18 @@ public class GameController implements ActionListener {
      * @param heigth
      *            the selected line
      */
-    private void play(int width, int heigth){
-
-    // ADD YOU CODE HERE
+    private void play(int width, int height){
+      boolean clicked = this.game.hasBeenClicked(width, height);
+      if (!clicked){
+        boolean mine = this.game.isMined(width, height);
+        if(mine){
+           this.game.uncoverAll();
+        }
+        this.game.click(width,height);
+        this.game.uncover(width,height);
+        clearZone(this.game.get(width,height));
+        this.game.step();
+      }
 
     }
 
@@ -86,13 +103,68 @@ public class GameController implements ActionListener {
      *      the DotInfo object corresponding to the selected DotButton that
      * had zero neighbouring mines
      */
+    @SuppressWarnings("unchecked")
     private void clearZone(DotInfo initialDot) {
+      //creating a huge stack for now:
+      int capacity = this.width*this.height;
+      GenericArrayStack<DotInfo> stack = new GenericArrayStack(capacity);
+      stack.push(initialDot);
+      boolean empty = stack.isEmpty();
+      while (!empty){
+        DotInfo d = stack.pop();
+        if (d == null){ //really shabby catch right here but it works
+          break;
+        }
+        //THIS IS UGLY TEMP FOR ALGORITHM TO WORK
+        int i = d.getX();
+        int j = d.getY();
+        int x_min = i-1;
+        int x_max = i+1;
+        int y_min = j-1;
+        int y_max = j+1;
+        // deals with case if user has clicked on a corner or a side
+        if(x_min < 0){
+          x_min += 1;
+        }
+        if(y_min < 0){
+          y_min += 1;
+        }
+        if(x_max > this.width){
+          x_min -= 1;
+        }
+        if(y_max > this.height){
+          y_min -= 1;
+        }
+        int mines = 0; // counts mines
+        for (int x = x_min; x < x_max; x++){
+          for (int y = y_min; y < y_max; y++){
+            DotInfo tmp = this.game.get(x,y);
+            boolean covered = tmp.isCovered();
+            if(covered){
+              if (!(tmp.isMined() || tmp.getNeighbooringMines() > 0)){
+                tmp.uncover();
+                game.uncover(x,y); //UNCOVERS TEMP BOARD
+                stack.push(tmp);
+              }
+              //end if
+            }
+            //end if
+          }
 
-
-    // ADD YOU CODE HERE
-
+        }
+        //end for
+        System.out.println(game); //DELETEM
+        empty = stack.isEmpty(); //update while loop
+      }
+      //end while
     }
 
-
+    /*
+        DELETEM
+    */
+    public static void main(String[] args) {
+      GameController g = new GameController(10,10,10);
+      g.play(3,4); //DELETEM
+    }
 
 }

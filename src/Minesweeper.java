@@ -10,7 +10,9 @@
 public class Minesweeper {
 
      // ADD YOUR INSTANCE VARIABLES HERE
-
+     static final int DEFAULT_WIDTH = 20;
+     static final int DEFAULT_HEIGTH = 12;
+     static final int DEFAULT_MINES = 36;
    /**
      * <b>main</b> of the application. Creates the instance of  GameController
      * and starts the game. If three parameters width, heigth,
@@ -37,7 +39,7 @@ public class Minesweeper {
                     width = DEFAULT_WIDTH;
                 }
                 heigth = Integer.parseInt(args[1]);
-                if(heigth<5){
+                if(heigth<12){
                     System.out.println("Invalid argument, using default...");
                     heigth = DEFAULT_HEIGTH;
                 }
@@ -60,7 +62,7 @@ public class Minesweeper {
             numberOfMines = (width*heigth - 1);
         }
 
-        GameController game = new GameController(width, heigth,numberOfMines);
+        GameController game = new GameController(width,heigth,numberOfMines);
     }
 
 

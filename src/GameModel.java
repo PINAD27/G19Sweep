@@ -23,7 +23,7 @@ public class GameModel {
     private int width;
     private int heigth;
     private int numberOfMines;
-    private int temp_board[][]; // FOR TESTING PURPOSES
+    private String temp_board[][]; // FOR TESTING PURPOSES
     private int board[][];
     private DotInfo dot[][]; //Using DotInfo class for dot
     private int dotsUncovered;
@@ -48,7 +48,7 @@ public class GameModel {
         this.numberOfSteps = 0;
         this.board = new int [width][heigth];
         this.dot = new DotInfo [width][heigth];
-        this.temp_board = new int[width][heigth];
+        this.temp_board = new String [width][heigth];
         this.dotsUncovered = 0;
         reset();
     }
@@ -63,7 +63,7 @@ public class GameModel {
               DotInfo d = new DotInfo(i,j); // changed to dotinfo so we can use the class to hold more info on board
               this.dot[i][j] = d;
               this.board[i][j] = 0;
-              this.temp_board[i][j] = 1;
+              this.temp_board[i][j] = "X";
             }
         }
         int check =0;
@@ -209,7 +209,7 @@ public class GameModel {
      */
     public void uncover(int i, int j){
       get(i,j).uncover();
-      this.temp_board[i][j] = this.board[i][j]; // assigns value to uncover
+      this.temp_board[i][j] = "" + getNeighbooringMines(i,j); // assigns value to uncover
       this.dotsUncovered +=1;
     }
 
@@ -232,7 +232,7 @@ public class GameModel {
     public void uncoverAll(){
     for (int i = 0; i < this.width; i++){
       for (int j = 0; j < this.heigth; j++){
-        uncover(i,j);
+        this.temp_board[i][j] = "" + this.board[i][j];
       }
     }
     }
@@ -266,6 +266,7 @@ public class GameModel {
      * once the model has been updated after the payer selected a new square.
      */
      public void step(){
+       this.dotsUncovered++;
        this.numberOfSteps++;
     }
 
@@ -292,7 +293,7 @@ public class GameModel {
           s += " " + this.temp_board[i][j]; // creates a nice string representation of row ex: { 0 0 0 0 9 0 0 0 }
         }
         s += " }";
-        row[i] = s; // appendsto bigger string array
+        row[i] = s; // appends to bigger string array
       }
       String out = "";
       for(int x = 0; x < row.length; x++){

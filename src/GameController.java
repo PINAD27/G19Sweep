@@ -86,12 +86,16 @@ public class GameController implements ActionListener {
       if (!clicked){
         boolean mine = this.game.isMined(width, height);
         if(mine){
+           System.out.println("BOOM");
            this.game.uncoverAll();
-        }
+           System.out.println(game);
+        } else{
         this.game.click(width,height);
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));
         this.game.step();
+        System.out.println(game);
+      }
       }
 
     }
@@ -141,9 +145,10 @@ public class GameController implements ActionListener {
             DotInfo tmp = this.game.get(x,y);
             boolean covered = tmp.isCovered();
             if(covered){
-              if (!(tmp.isMined() || tmp.getNeighbooringMines() > 0)){
-                tmp.uncover();
-                game.uncover(x,y); //UNCOVERS TEMP BOARD
+              //dotsUncovered
+              tmp.uncover();
+              game.uncover(x,y); //UNCOVERS TEMP BOARD
+              if (!(tmp.isMined() || game.getNeighbooringMines(x,y) > 0)){
                 stack.push(tmp);
               }
               //end if
@@ -153,7 +158,7 @@ public class GameController implements ActionListener {
 
         }
         //end for
-        System.out.println(game); //DELETEM
+        //DELETEM
         empty = stack.isEmpty(); //update while loop
       }
       //end while
@@ -163,8 +168,9 @@ public class GameController implements ActionListener {
         DELETEM
     */
     public static void main(String[] args) {
-      GameController g = new GameController(10,10,10);
+      GameController g = new GameController(10,10,50);
       g.play(3,4); //DELETEM
+
     }
 
 }

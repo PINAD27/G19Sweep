@@ -63,7 +63,7 @@ public class GameModel {
               DotInfo d = new DotInfo(i,j); // changed to dotinfo so we can use the class to hold more info on board
               this.dot[i][j] = d;
               this.board[i][j] = 0;
-              this.temp_board[i][j] = "X";
+              this.temp_board[i][j] = "X";//im prett
             }
         }
         int check =0;

@@ -54,7 +54,7 @@ public class GameView extends JFrame {
 
         for (int i = 0; i < gameModel.getWidth(); i++) {
             for (int j = 0; j < gameModel.getHeigth(); j++) {
-                    DotButton(i,j,gameModel.getBoard()[i][j]);
+                    DotButton(i,j,gameModel.getBoard()[i][j]);//we have to add buttons to the frame
                 {
         }
 
@@ -71,7 +71,7 @@ public class GameView extends JFrame {
      * on the current game model, then redraws the view
      */
 
-    public void update(){
+    public void update(){//we need to add a udate to the dotbutton status
 
     // ADD YOU CODE HERE
     frame.repaint();

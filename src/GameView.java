@@ -17,6 +17,9 @@ import javax.swing.*;
 public class GameView extends JFrame {
 
      // ADD YOUR INSTANCE VARIABLES HERE
+    private GameModel gameModel;
+    private GameController gameController;
+    private JFrame frame;
 
     /**
      * Constructor used for initializing the Frame
@@ -29,9 +32,29 @@ public class GameView extends JFrame {
 
     public GameView(GameModel gameModel, GameController gameController) {
 
-    // ADD YOU CODE HERE
+        this.gameModel = gameModel;
+        this.gameModel= gameModel;
+        this.frame = new JFrame ("Minesweeper");
+        frame = new JFrame ("Minesweeper");
+        frame. setSize(700, 500);
+        
+        JButton reset, quit; 
+        JPanel panel = new JPanel();
+        
+        panel.setOpaque(false);
+        panel.setLayout(new FlowLayout());
+        quit = new JButton("quit");
+        reset = new JButton("Reset");
 
+        panel.add(reset);
+        panel.add(quit);
+        frame.add(panel, BorderLayout.SOUTH);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        quit.setActionCommand("quit");
+        reset.setActionCommand("reset");
     }
+
 
     /**
      * update the status of the board's DotButton instances based

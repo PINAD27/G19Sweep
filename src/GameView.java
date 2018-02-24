@@ -33,19 +33,21 @@ public class GameView extends JFrame {
     public GameView(GameModel gameModel, GameController gameController) {
 
         this.gameModel = gameModel;
-        this.gameModel= gameModel;
+        this.gameController= gameController;
         this.frame = new JFrame ("Minesweeper");
         frame = new JFrame ("Minesweeper");
         frame. setSize(700, 500);
         
         JButton reset, quit; 
         JPanel panel = new JPanel();
+        JLabel label = new JLabel("Number of Steps:" + gameModel.getNumberOfSteps());
         
         panel.setOpaque(false);
         panel.setLayout(new FlowLayout());
         quit = new JButton("quit");
         reset = new JButton("Reset");
 
+        panel.add(label);
         panel.add(reset);
         panel.add(quit);
         frame.add(panel, BorderLayout.SOUTH);
@@ -64,6 +66,7 @@ public class GameView extends JFrame {
     public void update(){
 
     // ADD YOU CODE HERE
+    frame.repaint();
 
     }
 

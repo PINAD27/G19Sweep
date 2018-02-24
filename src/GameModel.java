@@ -86,6 +86,9 @@ public class GameModel {
     public int getHeigth(){
         return(this.heigth);
     }
+    public int[][] getBoard(){
+      return(this.board);
+    }
 
     /**
      * Getter method for the width of the game

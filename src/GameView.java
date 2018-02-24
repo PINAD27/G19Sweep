@@ -51,6 +51,14 @@ public class GameView extends JFrame {
         panel.add(reset);
         panel.add(quit);
         frame.add(panel, BorderLayout.SOUTH);
+
+        for (int i = 0; i < gameModel.getWidth(); i++) {
+            for (int j = 0; j < gameModel.getHeigth(); j++) {
+                    DotButton(i,j,gameModel.getBoard()[i][j]);
+                {
+        }
+
+
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         quit.setActionCommand("quit");

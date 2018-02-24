@@ -80,6 +80,7 @@ public class DotButton extends JButton {
       this.column = column;
       this.row = row;
       this.iconNumber = iconNumber;
+      
     // ADD YOU CODE HERE
 
     }

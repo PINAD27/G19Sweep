@@ -21,6 +21,8 @@ public class GameView extends JFrame {
     private GameController gameController;
     private JFrame frame;
     private DotButton Dots[][];
+    private JLabel label;
+    private JPanel panel;
 
     /**
      * Constructor used for initializing the Frame
@@ -40,8 +42,8 @@ public class GameView extends JFrame {
         frame. setSize(700, 500);
 
         JButton reset, quit;
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel("Number of Steps:" + gameModel.getNumberOfSteps());
+        panel = new JPanel();
+        label = new JLabel("Number of Steps: " + gameModel.getNumberOfSteps());
 
         panel.setOpaque(false);
         panel.setLayout(new FlowLayout());
@@ -83,10 +85,15 @@ public class GameView extends JFrame {
      */
 
     public void update(){//we need to add a udate to the dotbutton status
-    System.out.println("hi"); //DELETEm
+    gameModel.step();
+    this.label.setText("Number of Steps: " + gameModel.getNumberOfSteps());
+    
+    System.out.println(gameModel.getNumberOfSteps()); //DELETEm
+
     for(int i = 0; i < gameModel.getWidth(); i++){
       for(int j = 0; j < gameModel.getHeigth(); j++){
         Dots[i][j].setIconNumber(getIcon(i,j));
+        Dots[i][j].setBorder(null);
       }
     }
     frame.repaint();

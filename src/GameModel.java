@@ -247,7 +247,7 @@ public class GameModel {
      * @return the current number of steps
      */
     public int getNumberOfSteps(){
-        return(numberOfSteps);
+        return(this.numberOfSteps);
     }
 
     /**

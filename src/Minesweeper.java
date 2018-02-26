@@ -65,5 +65,6 @@ public class Minesweeper {
         s.display();
         GameController game = new GameController(10,12,10);
 
+
         }
     }

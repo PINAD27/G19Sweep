@@ -39,7 +39,7 @@ public class GameView extends JFrame {
         this.gameController= gameController;
         this.frame = new JFrame ("Minesweeper");
         frame = new JFrame ("Minesweeper");
-        frame. setSize(700, 500);
+        frame.setSize(700, 500);
 
         JButton reset, quit;
         panel = new JPanel();
@@ -56,6 +56,7 @@ public class GameView extends JFrame {
         frame.add(panel, BorderLayout.SOUTH);
 
         JPanel innerGame = new JPanel();
+        
         innerGame.setLayout(new GridLayout(gameModel.getWidth(), gameModel.getHeigth())); //grid width x length
         for (int i = 0; i < gameModel.getWidth(); i++) {
             for (int j = 0; j < gameModel.getHeigth(); j++) {
@@ -85,8 +86,7 @@ public class GameView extends JFrame {
      */
 
     public void update(){//we need to add a udate to the dotbutton status
-    gameModel.step();
-    this.label.setText("Number of Steps: " + gameModel.getNumberOfSteps());
+
     
     System.out.println(gameModel.getNumberOfSteps()); //DELETEm
 
@@ -96,6 +96,7 @@ public class GameView extends JFrame {
         Dots[i][j].setBorder(null);
       }
     }
+    this.label.setText("Number of Steps: " + gameModel.getNumberOfSteps());
     frame.repaint();
 
     }

@@ -113,7 +113,6 @@ public class GameController implements ActionListener {
         this.game.click(width,height);
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));
-        this.game.step();
         System.out.println(game);
         if (this.game.isFinished()){
           System.out.println("Congratuleter!");

@@ -63,7 +63,7 @@ public class GameController implements ActionListener {
            System.out.println("quit"); //DELETEM
            System.exit(0);
         }
-        else{
+        else{//we should make this check that this block isnt reavealed yet
           String token = e.getActionCommand();
           StringTokenizer tokenizer = new StringTokenizer(token, ",");
           int i = Integer.parseInt(tokenizer.nextToken());
@@ -100,10 +100,16 @@ public class GameController implements ActionListener {
       if (!clicked){
         boolean mine = this.game.isMined(width, height);
         if(mine){
-           System.out.println("BOOM");
            this.game.uncoverAll();
+           System.out.println("BOOM");
            System.out.println(game);
-        } else{
+
+           Object[] options = { "Quit", "Play Again" };
+           JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
+           JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+           null, options, options[0]);        
+                } 
+        else{
         this.game.click(width,height);
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));

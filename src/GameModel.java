@@ -88,7 +88,7 @@ public class GameModel {
         return(this.heigth);
     }
     public int[][] getBoard(){
-      return(this.board);
+      return(this.temp_board);
     }
 
     /**
@@ -194,7 +194,7 @@ public class GameModel {
       int mines = 0; // counts mines
       for (int x = x_min; x <= x_max; x++){
         for (int y = y_min; y <= y_max; y++){
-          if(this.board[x][y]==9){
+          if(this.board[x][y]==9){ //LOOK FOR BUG HERE
             mines += 1;
           }
         }

@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
+
 /**
  * In the application <b>Minesweeper</b>, a <b>DotButton</b> is a specialized type of
  * <b>JButton</b> that represents a square in the game.
@@ -64,6 +65,7 @@ public class DotButton extends JButton {
     private int iconNumber;
 
 
+
     /**
      * Constructor used for initializing a DotButton at a specific
      * Board location, with a specific icon.
@@ -77,11 +79,13 @@ public class DotButton extends JButton {
      */
 
     public DotButton(int column, int row, int iconNumber) {
+      setIconNumber(iconNumber);
       this.column = column;
       this.row = row;
       this.iconNumber = iconNumber;
-      
-    // ADD YOU CODE HERE
+      super.setIcon(getImageIcon());
+
+    // ADD YOUR'E? CODE HERE
 
     }
 
@@ -100,6 +104,7 @@ public class DotButton extends JButton {
 
     public void setIconNumber(int iconNumber) {
       this.iconNumber = iconNumber;
+      super.setIcon(getImageIcon());
     // ADD YOU CODE HERE
 
     }

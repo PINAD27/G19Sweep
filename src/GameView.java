@@ -20,6 +20,7 @@ public class GameView extends JFrame {
     private GameModel gameModel;
     private GameController gameController;
     private JFrame frame;
+    private DotButton Dots[][];
 
     /**
      * Constructor used for initializing the Frame
@@ -31,7 +32,7 @@ public class GameView extends JFrame {
      */
 
     public GameView(GameModel gameModel, GameController gameController) {
-
+        this.Dots = new DotButton[gameModel.getWidth()][gameModel.getHeigth()];
         this.gameModel = gameModel;
         this.gameController= gameController;
         this.frame = new JFrame ("Minesweeper");
@@ -44,7 +45,7 @@ public class GameView extends JFrame {
 
         panel.setOpaque(false);
         panel.setLayout(new FlowLayout());
-        quit = new JButton("quit");
+        quit = new JButton("Quit");
         reset = new JButton("Reset");
 
         panel.add(label);
@@ -52,18 +53,27 @@ public class GameView extends JFrame {
         panel.add(quit);
         frame.add(panel, BorderLayout.SOUTH);
 
-        /*
+        JPanel innerGame = new JPanel();
+        innerGame.setLayout(new GridLayout(gameModel.getWidth(), gameModel.getHeigth())); //grid width x length
         for (int i = 0; i < gameModel.getWidth(); i++) {
             for (int j = 0; j < gameModel.getHeigth(); j++) {
-                    DotButton(i,j,gameModel.getBoard()[i][j]);//we have to add buttons to the frame
+                    DotButton d = new DotButton(i,j,getIcon(i,j));
+                    d.addActionListener(this.gameController);
+                    d.setActionCommand(i + "," + j);//DELETEm
+                    d.setBorder(null);
+                    Dots[i][j] = d;
+                    innerGame.add(d);//we have to add buttons to the frame
                 }
         }
-        */
-
+        frame.add(innerGame);
+        //frame.pack();
+        innerGame.setVisible(true);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         quit.setActionCommand("quit");
+        quit.addActionListener(this.gameController);
         reset.setActionCommand("reset");
+        reset.addActionListener(this.gameController);
     }
 
 
@@ -73,8 +83,12 @@ public class GameView extends JFrame {
      */
 
     public void update(){//we need to add a udate to the dotbutton status
-
-    // ADD YOU CODE HERE
+    System.out.println("hi"); //DELETEm
+    for(int i = 0; i < gameModel.getWidth(); i++){
+      for(int j = 0; j < gameModel.getHeigth(); j++){
+        Dots[i][j].setIconNumber(getIcon(i,j));
+      }
+    }
     frame.repaint();
 
     }
@@ -92,8 +106,7 @@ public class GameView extends JFrame {
     private int getIcon(int i, int j){
 
     // ADD YOU CODE HERE
-    return -1;
+      return (gameModel.getBoard()[i][j]);
     }
-
 
 }

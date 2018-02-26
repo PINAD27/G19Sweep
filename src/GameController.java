@@ -1,5 +1,5 @@
 import java.awt.event.*;
-import java.util.LinkedList;
+import java.util.*;
 
 import javax.swing.*;
 
@@ -23,6 +23,7 @@ public class GameController implements ActionListener {
     private int height;
     private int numberOfMines;
     private GameModel game;
+    private GameView gameView;
     /**
      * Constructor used for initializing the controller. It creates the game's view
      * and the game's model instances
@@ -40,6 +41,7 @@ public class GameController implements ActionListener {
       this.numberOfMines = numberOfMines;
       this.game = new GameModel(width, height, numberOfMines);
       System.out.println(game);
+      this.gameView = new GameView(game, this);
 
     }
 
@@ -52,11 +54,23 @@ public class GameController implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     public void actionPerformed(ActionEvent e) {
+
         if(e.getActionCommand().equals("reset")){
+          System.out.println("reset"); //DELETEM
           reset();
         }
         if(e.getActionCommand().equals("quit")){
-          this.game.uncoverAll(); //temp exit command
+           System.out.println("quit"); //DELETEM
+           System.exit(0);
+        }
+        else{
+          String token = e.getActionCommand();
+          StringTokenizer tokenizer = new StringTokenizer(token, ",");
+          int i = Integer.parseInt(tokenizer.nextToken());
+          int j = Integer.parseInt(tokenizer.nextToken());
+          System.out.println(i + "," + j); //DELETEM
+          play(i,j);
+          gameView.update();
         }
     }
 
@@ -82,7 +96,7 @@ public class GameController implements ActionListener {
      *            the selected line
      */
     public void play(int width, int height){ // DELETEM CHANGE TO PRIVATE !!!
-      boolean clicked = this.game.hasBeenClicked(width, height);
+      boolean clicked = this.game.hasBeenClicked(width, height); //hi
       if (!clicked){
         boolean mine = this.game.isMined(width, height);
         if(mine){

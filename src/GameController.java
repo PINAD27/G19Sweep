@@ -139,9 +139,7 @@ public class GameController implements ActionListener {
       boolean empty = stack.isEmpty();
       while (!empty){
         DotInfo d = stack.pop();
-        if (d == null){ //really shabby catch right here but it works
-          break;
-        }
+
         //THIS IS UGLY TEMP FOR ALGORITHM TO WORK
 
         int i = d.getX();
@@ -167,10 +165,12 @@ public class GameController implements ActionListener {
           for (int y = y_min; y <= y_max; y++){
             DotInfo tmp = this.game.get(x,y);
             boolean covered = tmp.isCovered();
-            if(covered){
+            if(covered && (!tmp.isMined())){
+              System.out.println(covered);
               //dotsUncovered
-              game.uncover(x,y); //UNCOVERS TEMP BOARD
+              game.uncover(x,y);   //UNCOVERS TEMP BOARD
               if (game.isBlank(x,y)){
+
                 stack.push(tmp);
               }
               //end if

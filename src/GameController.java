@@ -107,8 +107,8 @@ public class GameController implements ActionListener {
            Object[] options = { "Quit", "Play Again" };
            JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-           null, options, options[0]);        
-                } 
+           null, options, options[0]);
+                }
         else{
         this.game.click(width,height);
         this.game.uncover(width,height);
@@ -140,10 +140,17 @@ public class GameController implements ActionListener {
       while (!empty){
         DotInfo d = stack.pop();
 
+
         //THIS IS UGLY TEMP FOR ALGORITHM TO WORK
 
         int i = d.getX();
         int j = d.getY();
+        if (!game.isBlank(i,j)){ //CATCH IF DOT PRESSED IS MINE
+          game.uncover(i,j);
+          break;
+        }
+
+
         int x_min = i-1;
         int x_max = i+1;
         int y_min = j-1;
@@ -166,7 +173,6 @@ public class GameController implements ActionListener {
             DotInfo tmp = this.game.get(x,y);
             boolean covered = tmp.isCovered();
             if(covered && (!tmp.isMined())){
-              System.out.println(covered);
               //dotsUncovered
               game.uncover(x,y);   //UNCOVERS TEMP BOARD
               if (game.isBlank(x,y)){

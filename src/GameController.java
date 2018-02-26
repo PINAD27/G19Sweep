@@ -81,7 +81,7 @@ public class GameController implements ActionListener {
      * @param heigth
      *            the selected line
      */
-    private void play(int width, int height){
+    public void play(int width, int height){ // DELETEM CHANGE TO PRIVATE !!!
       boolean clicked = this.game.hasBeenClicked(width, height);
       if (!clicked){
         boolean mine = this.game.isMined(width, height);
@@ -95,6 +95,9 @@ public class GameController implements ActionListener {
         clearZone(this.game.get(width,height));
         this.game.step();
         System.out.println(game);
+        if (this.game.isFinished()){
+          System.out.println("Congratuleter!");
+        }
       }
       }
 
@@ -111,7 +114,7 @@ public class GameController implements ActionListener {
     private void clearZone(DotInfo initialDot) {
       //creating a huge stack for now:
       int capacity = this.width*this.height;
-      GenericArrayStack<DotInfo> stack = new GenericArrayStack(capacity);
+      GenericArrayStack<DotInfo> stack = new GenericArrayStack<DotInfo>(capacity);
       stack.push(initialDot);
       boolean empty = stack.isEmpty();
       while (!empty){
@@ -120,6 +123,7 @@ public class GameController implements ActionListener {
           break;
         }
         //THIS IS UGLY TEMP FOR ALGORITHM TO WORK
+
         int i = d.getX();
         int j = d.getY();
         int x_min = i-1;
@@ -133,22 +137,20 @@ public class GameController implements ActionListener {
         if(y_min < 0){
           y_min += 1;
         }
-        if(x_max > this.width){
-          x_min -= 1;
+        if(x_max >= this.width){
+          x_max -= 1;
         }
-        if(y_max > this.height){
-          y_min -= 1;
+        if(y_max >= this.height){
+          y_max -= 1;
         }
-        int mines = 0; // counts mines
-        for (int x = x_min; x < x_max; x++){
-          for (int y = y_min; y < y_max; y++){
+        for (int x = x_min; x <= x_max; x++){
+          for (int y = y_min; y <= y_max; y++){
             DotInfo tmp = this.game.get(x,y);
             boolean covered = tmp.isCovered();
             if(covered){
               //dotsUncovered
-              tmp.uncover();
               game.uncover(x,y); //UNCOVERS TEMP BOARD
-              if (!(tmp.isMined() || game.getNeighbooringMines(x,y) > 0)){
+              if (game.isBlank(x,y)){
                 stack.push(tmp);
               }
               //end if
@@ -158,19 +160,9 @@ public class GameController implements ActionListener {
 
         }
         //end for
-        //DELETEM
         empty = stack.isEmpty(); //update while loop
       }
       //end while
-    }
-
-    /*
-        DELETEM
-    */
-    public static void main(String[] args) {
-      GameController g = new GameController(10,10,50);
-      g.play(3,4); //DELETEM
-
     }
 
 }

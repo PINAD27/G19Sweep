@@ -120,7 +120,7 @@ public class DotInfo {
     }
 
     public String toString(){
-      return "Dot at x,y: " + x + "," + y; 
+      return "Dot at x,y: " + x + "," + y;
     }
 
  }

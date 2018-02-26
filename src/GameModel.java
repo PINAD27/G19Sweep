@@ -23,7 +23,7 @@ public class GameModel {
     private int width;
     private int heigth;
     private int numberOfMines;
-    private String temp_board[][]; // FOR TESTING PURPOSES
+    private int temp_board[][]; // FOR TESTING PURPOSES
     private int board[][];
     private DotInfo dot[][]; //Using DotInfo class for dot
     private int dotsUncovered;
@@ -48,7 +48,7 @@ public class GameModel {
         this.numberOfSteps = 0;
         this.board = new int [width][heigth];
         this.dot = new DotInfo [width][heigth];
-        this.temp_board = new String [width][heigth];
+        this.temp_board = new int [width][heigth];
         this.dotsUncovered = 0;
         reset();
     }
@@ -63,7 +63,8 @@ public class GameModel {
               DotInfo d = new DotInfo(i,j); // changed to dotinfo so we can use the class to hold more info on board
               this.dot[i][j] = d;
               this.board[i][j] = 0;
-              this.temp_board[i][j] = "X";//im prett
+              this.temp_board[i][j] = 11;//im prett
+
             }
         }
         int check =0;
@@ -137,7 +138,7 @@ public class GameModel {
      * @return the status of the dot at location (i,j)
      */
     public boolean isBlank(int i, int j){
-      return (get(i,j).getNeighbooringMines() == 0);
+      return (getNeighbooringMines(i,j) == 0);
     }
 
     /**
@@ -184,15 +185,15 @@ public class GameModel {
       if(y_min < 0){
         y_min += 1;
       }
-      if(x_max > this.width){
-        x_min -= 1;
+      if(x_max >= this.width){
+        x_max -= 1;
       }
-      if(y_max > this.heigth){
-        y_min -= 1;
+      if(y_max >= this.heigth){
+        y_max -= 1;
       }
       int mines = 0; // counts mines
-      for (int x = x_min; x < x_max; x++){
-        for (int y = y_min; y < y_max; y++){
+      for (int x = x_min; x <= x_max; x++){
+        for (int y = y_min; y <= y_max; y++){
           if(this.board[x][y]==9){
             mines += 1;
           }
@@ -212,7 +213,7 @@ public class GameModel {
      */
     public void uncover(int i, int j){
       get(i,j).uncover();
-      this.temp_board[i][j] = "" + getNeighbooringMines(i,j); // assigns value to uncover
+      this.temp_board[i][j] = getNeighbooringMines(i,j); // assigns value to uncover
       this.dotsUncovered +=1;
     }
 
@@ -235,7 +236,7 @@ public class GameModel {
     public void uncoverAll(){
     for (int i = 0; i < this.width; i++){
       for (int j = 0; j < this.heigth; j++){
-        this.temp_board[i][j] = "" + this.board[i][j];
+        this.temp_board[i][j] = this.board[i][j];
       }
     }
     }
@@ -269,7 +270,6 @@ public class GameModel {
      * once the model has been updated after the payer selected a new square.
      */
      public void step(){
-       this.dotsUncovered++;
        this.numberOfSteps++;
     }
 
@@ -280,7 +280,8 @@ public class GameModel {
      * @return true if the game is finished, false otherwise
      */
     public boolean isFinished(){
-      return (dotsUncovered == ((width*heigth) - numberOfMines));
+      //System.out.println((this.numberOfMines == (this.dotsUncovered - this.numberOfMines)) + " "  + this.dotsUncovered);
+      return (this.temp_board == this.board);
     }
 
    /**
@@ -289,24 +290,14 @@ public class GameModel {
      * @return String representation of the model
      */
     public String toString(){
-      String row[] = new String[this.heigth];
+      String out = "";
       for(int i = 0; i < this.width; i++){
         String s = "{";
         for(int j = 0; j < this.heigth; j++){
           s += " " + this.temp_board[i][j]; // creates a nice string representation of row ex: { 0 0 0 0 9 0 0 0 }
         }
         s += " }";
-        row[i] = s; // appends to bigger string array
-      }
-      String out = "";
-      for(int x = 0; x < row.length; x++){
-        out += row[x] + "\n"; // creates a nice string representation with all rows
-                              /*
-                              ex:
-                              { 0 0 0 }
-                              { 0 9 0 }
-                              { 0 9 9 }
-                              */
+        out += s + "\n"; // appends to bigger string array
       }
       return out;
     }

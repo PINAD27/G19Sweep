@@ -14,7 +14,7 @@ public class GenericArrayStack<E> implements Stack<E> {
     }
 
     // Returns true if this ArrayStack is empty
-    public boolean isEmpty() {
+    public boolean isEmpty() { //DELETEM
       return this.pos == 0;
     }
 
@@ -24,14 +24,21 @@ public class GenericArrayStack<E> implements Stack<E> {
     }
 
     public E pop() {
+      if(!isEmpty()){
       E elem = this.stack[this.pos-1];
       this.stack[this.pos-1] = null;
+      this.pos--;
       return elem;
+    }
+    return null;
     }
 
     public E peek() {
+      if(!isEmpty()){
       E top = pop();
       push(top);
       return top;
     }
+    return null;
+  }
 }

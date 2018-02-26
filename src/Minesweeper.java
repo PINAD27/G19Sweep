@@ -61,8 +61,10 @@ public class Minesweeper {
                 + (width*heigth - 1) + " instead. Good luck!");
             numberOfMines = (width*heigth - 1);
         }
+        StudentInfo s = new StudentInfo();
+        s.display();
+        GameController game = new GameController(10,12,10);
 
 
-        GameController game = new GameController(10,12,36);
         }
     }

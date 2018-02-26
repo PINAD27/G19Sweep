@@ -62,6 +62,6 @@ public class Minesweeper {
             numberOfMines = (width*heigth - 1);
         }
 
-        GameController game = new GameController(10,10, 5);
+        GameController game = new GameController(10,12,36);
         }
     }

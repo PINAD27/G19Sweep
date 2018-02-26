@@ -77,6 +77,12 @@ public class GameModel {
                 check++;
             }
         }
+        //gets all neighbooring mines
+        for(int x = 0; x < width; x++){
+          for(int y = 0; y < heigth; y++){
+            this.dot[x][y].setNeighbooringMines(getNeighbooringMines(x,y));
+          }
+        }
     }
 
     /**
@@ -191,15 +197,15 @@ public class GameModel {
       if(y_max >= this.heigth){
         y_max -= 1;
       }
+
       int mines = 0; // counts mines
       for (int x = x_min; x <= x_max; x++){
         for (int y = y_min; y <= y_max; y++){
-          if(this.board[x][y]==9){ //LOOK FOR BUG HERE
+          if(isMined(x,y)){ //LOOK FOR BUG HERE
             mines += 1;
           }
         }
       }
-      get(i,j).setNeighbooringMines(mines);
       return mines;
     }
 
@@ -236,7 +242,15 @@ public class GameModel {
     public void uncoverAll(){
     for (int i = 0; i < this.width; i++){
       for (int j = 0; j < this.heigth; j++){
-        this.temp_board[i][j] = this.board[i][j];
+        if(isMined(i,j)){
+        this.temp_board[i][j] = 9;
+        }
+        else if(isBlank(i,j)){
+        this.temp_board[i][j] = 0;
+      }
+        else{
+        this.temp_board[i][j] = this.dot[i][j].getNeighbooringMines();
+      }
       }
     }
     }

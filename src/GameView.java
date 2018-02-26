@@ -37,11 +37,11 @@ public class GameView extends JFrame {
         this.frame = new JFrame ("Minesweeper");
         frame = new JFrame ("Minesweeper");
         frame. setSize(700, 500);
-        
-        JButton reset, quit; 
+
+        JButton reset, quit;
         JPanel panel = new JPanel();
         JLabel label = new JLabel("Number of Steps:" + gameModel.getNumberOfSteps());
-        
+
         panel.setOpaque(false);
         panel.setLayout(new FlowLayout());
         quit = new JButton("quit");
@@ -52,12 +52,13 @@ public class GameView extends JFrame {
         panel.add(quit);
         frame.add(panel, BorderLayout.SOUTH);
 
+        /*
         for (int i = 0; i < gameModel.getWidth(); i++) {
             for (int j = 0; j < gameModel.getHeigth(); j++) {
                     DotButton(i,j,gameModel.getBoard()[i][j]);//we have to add buttons to the frame
-                {
+                }
         }
-
+        */
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -91,7 +92,7 @@ public class GameView extends JFrame {
     private int getIcon(int i, int j){
 
     // ADD YOU CODE HERE
-
+    return -1;
     }
 
 

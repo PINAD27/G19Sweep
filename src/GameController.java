@@ -164,7 +164,6 @@ public class GameController implements ActionListener {
               //dotsUncovered
               game.uncover(x,y);   //UNCOVERS TEMP BOARD
               if (game.isBlank(x,y)){
-
                 stack.push(tmp);
               }
               //end if

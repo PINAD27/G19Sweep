@@ -105,9 +105,15 @@ public class GameController implements ActionListener {
            System.out.println(game);
 
            Object[] options = { "Quit", "Play Again" };
-           JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
-           JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+           int r =JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
+           JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
            null, options, options[0]);
+
+           if (r == JOptionPane.YES_OPTION)
+                System.exit(0);
+           else if (r == JOptionPane.NO_OPTION) 
+                game.reset();         
+
                 }
         else{
         this.game.click(width,height);

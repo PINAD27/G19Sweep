@@ -118,9 +118,14 @@ public class GameController implements ActionListener {
         clearZone(this.game.get(width,height));
         if (this.game.isFinished()){
           Object[] options = { "Quit", "Play Again" };
-          JOptionPane.showOptionDialog(null, "Congratulations you've won in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "Victery!!",
-          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+          int k=JOptionPane.showOptionDialog(null, "Congratulations you've won in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "Victery!!",
+          JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
           null, options, options[0]);
+
+          if (k == JOptionPane.YES_OPTION)
+                System.exit(0);
+          else if (k == JOptionPane.NO_OPTION) 
+                game.reset();
         }
       }
       }

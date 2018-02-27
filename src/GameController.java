@@ -40,7 +40,6 @@ public class GameController implements ActionListener {
       this.height = height;
       this.numberOfMines = numberOfMines;
       this.game = new GameModel(width, height, numberOfMines);
-      System.out.println(game);
       this.gameView = new GameView(game, this);
 
     }
@@ -68,7 +67,6 @@ public class GameController implements ActionListener {
           StringTokenizer tokenizer = new StringTokenizer(token, ",");
           int i = Integer.parseInt(tokenizer.nextToken());
           int j = Integer.parseInt(tokenizer.nextToken());
-          System.out.println(i + "," + j); //DELETEM
           play(i,j);
           gameView.update();
         }
@@ -102,7 +100,6 @@ public class GameController implements ActionListener {
         if(mine){
            this.game.uncoverAll();
            System.out.println("BOOM");
-           System.out.println(game);
 
            Object[] options = { "Quit", "Play Again" };
            int r =JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
@@ -119,9 +116,11 @@ public class GameController implements ActionListener {
         this.game.click(width,height);
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));
-        System.out.println(game);
         if (this.game.isFinished()){
-          System.out.println("Congratuleter!");
+          Object[] options = { "Quit", "Play Again" };
+          JOptionPane.showOptionDialog(null, "Congratulations you've won in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "Victery!!",
+          JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+          null, options, options[0]);
         }
       }
       }

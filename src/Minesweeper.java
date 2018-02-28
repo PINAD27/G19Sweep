@@ -63,7 +63,7 @@ public class Minesweeper {
         }
         StudentInfo s = new StudentInfo();
         s.display();
-        GameController game = new GameController(10,12,1);
+        GameController game = new GameController(10,12,2);
 
 
         }

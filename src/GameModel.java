@@ -263,6 +263,9 @@ public class GameModel {
     public int getNumberOfSteps(){
         return(this.numberOfSteps);
     }
+    public void resetSteps(){
+        this.numberOfSteps=0;
+    }
 
     /**
      * Getter method for the model's dotInfo reference

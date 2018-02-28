@@ -55,11 +55,13 @@ public class GameController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getActionCommand().equals("reset")){
-          System.out.println("reset"); //DELETEM
+
+         // System.out.println("reset"); //DELETEM
           reset();
+          gameView.update();
         }
-        if(e.getActionCommand().equals("quit")){
-           System.out.println("quit"); //DELETEM
+        else if(e.getActionCommand().equals("quit")){
+          // System.out.println("quit"); //DELETEM
            System.exit(0);
         }
         else{//we should make this check that this block isnt reavealed yet
@@ -76,6 +78,7 @@ public class GameController implements ActionListener {
      * resets the game
      */
     private void reset(){
+      this.game.resetSteps();
       this.game.reset();
 
     }
@@ -99,7 +102,6 @@ public class GameController implements ActionListener {
         boolean mine = this.game.isMined(width, height);
         if(mine){
            this.game.uncoverAll();
-           System.out.println("BOOM");
            gameView.update();
            Object[] options = { "Quit", "Play Again" };
            int r =JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
@@ -108,8 +110,8 @@ public class GameController implements ActionListener {
 
            if (r == JOptionPane.YES_OPTION)
                 System.exit(0);
-           else if (r == JOptionPane.NO_OPTION) 
-                game.reset();         
+           else if (r == JOptionPane.NO_OPTION)
+                reset();   
 
                 }
         else{
@@ -117,6 +119,7 @@ public class GameController implements ActionListener {
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));
         if (this.game.isFinished()){
+            game.uncoverAll(); //ATWAD
             gameView.update();
           Object[] options = { "Quit", "Play Again" };
           int k=JOptionPane.showOptionDialog(null, "Congratulations you've won in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "Victery!!",
@@ -126,7 +129,7 @@ public class GameController implements ActionListener {
           if (k == JOptionPane.YES_OPTION)
                 System.exit(0);
           else if (k == JOptionPane.NO_OPTION) 
-                game.reset();
+                reset();
         }
       }
       }

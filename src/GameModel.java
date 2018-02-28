@@ -91,7 +91,7 @@ public class GameModel {
      * @return the value of the attribute heigthOfGame
      */
     public int getHeigth(){
-        return(this.heigth);
+        return (this.heigth);
     }
     public int[][] getBoard(){
       return(this.temp_board);
@@ -103,7 +103,7 @@ public class GameModel {
      * @return the value of the attribute widthOfGame
      */
     public int getWidth(){
-        return(this.width);
+        return (this.width);
     }
 
     /**

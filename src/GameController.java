@@ -101,6 +101,7 @@ public class GameController implements ActionListener {
       if (!clicked){
         boolean mine = this.game.isMined(width, height);
         if(mine){
+           this.game.step();
            this.game.uncoverAll();
            gameView.update();
            Object[] options = { "Quit", "Play Again" };

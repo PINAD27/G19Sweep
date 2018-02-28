@@ -39,7 +39,8 @@ public class GameView extends JFrame {
         this.gameController= gameController;
         this.frame = new JFrame ("Minesweeper");
         frame = new JFrame ("Minesweeper");
-        frame.setSize(370, 370);
+        frame.setSize(gameModel.getWidth()*50, gameModel.getHeigth()*20);
+        
 
         JButton reset, quit;
         panel = new JPanel();

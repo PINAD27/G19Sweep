@@ -100,7 +100,7 @@ public class GameController implements ActionListener {
         if(mine){
            this.game.uncoverAll();
            System.out.println("BOOM");
-
+           gameView.update();
            Object[] options = { "Quit", "Play Again" };
            int r =JOptionPane.showOptionDialog(null, "Aouh, you lost in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "BOOM!!",
            JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,
@@ -117,6 +117,7 @@ public class GameController implements ActionListener {
         this.game.uncover(width,height);
         clearZone(this.game.get(width,height));
         if (this.game.isFinished()){
+            gameView.update();
           Object[] options = { "Quit", "Play Again" };
           int k=JOptionPane.showOptionDialog(null, "Congratulations you've won in "+game.getNumberOfSteps()+" steps!\n Would you like to play again?", "Victery!!",
           JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,

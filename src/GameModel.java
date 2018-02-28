@@ -294,15 +294,18 @@ public class GameModel {
      * @return true if the game is finished, false otherwise
      */
     public boolean isFinished(){
-      System.out.println("hi");
+      int count =0;
       for (int i = 0; i < this.width; i++){
         for(int j = 0; j < this.heigth; j++){
           if (this.temp_board[i][j]==11){
-            return false;
+            count++;
           }
         }
       }
-      return true;
+      if (count== this.numberOfMines)
+        return true;
+      else
+        return false;
     }
 
    /**
